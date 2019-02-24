@@ -204,8 +204,10 @@ global_step = tf.Variable(0, trainable=False)
 learning_rate = tf.train.exponential_decay( LEARNING_RATE_BASE, global_step, LEARNING_RATE_STEP, LEARNING_RATE_DECAY, staircase=True/False) 
 ```
 其中，LEARNING_RATE_BASE为学习率初始值，LEARNING_RATE_DECAY为学习率衰减率,global_step记录了当前训练轮数，为不可训练型参数。学习率<br> learning_rate更新频率为输入数据集总样本数除以每次喂入样本数。若staircase设置为True时，表示global_step/learning rate step取整数，学习率阶梯型衰减；若<br> staircase设置为false时，学习率会是一条平滑下降的曲线。<br> 
+
 4.3
 -------
+
 √滑动平均：记录了一段时间内模型中所有参数w和b各自的平均值。利用滑动平均值可以增强模型的泛化能力。<br> 
 √滑动平均值（影子）计算公式：<br> 
 影子=衰减率* 影子+（1-衰减率）* 参数<br> 
